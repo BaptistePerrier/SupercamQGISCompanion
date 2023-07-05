@@ -1,0 +1,962 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>supercamQGISCompanionDockWidgetBase</class>
+ <widget class="QDockWidget" name="supercamQGISCompanionDockWidgetBase">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>685</width>
+    <height>844</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>SuperCam QGIS Companion</string>
+  </property>
+  <widget class="QWidget" name="dockWidgetContents">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>General</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_9">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Local parameters :</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_8">
+           <item row="0" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_9">
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="text">
+                <string>Version :</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="version_Label">
+               <property name="text">
+                <string>0.0.1</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_10">
+             <item>
+              <widget class="QLabel" name="label_3">
+               <property name="text">
+                <string>Local last measure :</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="localLastMeasure_Label">
+               <property name="text">
+                <string>&lt;unknown&gt;</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="2" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
+             <item>
+              <widget class="QLabel" name="label_5">
+               <property name="text">
+                <string>PDS last measure :</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="PDSLastMeasure_Label">
+               <property name="text">
+                <string>&lt;unknown&gt;</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="title">
+           <string>PDS Syncing</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_7">
+           <item row="1" column="0">
+            <widget class="QPushButton" name="mapTool_button">
+             <property name="text">
+              <string>Map tool</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QPushButton" name="syncPDS_button">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Sync with PDS</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QPushButton" name="rebuildLocalMasterlist_button">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Rebuild local masterlist</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QPushButton" name="reloadLocalMasterlist_button">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Reload local masterlist</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="title">
+           <string>Logs :</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="QTextEdit" name="logs_TextEdit">
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QGroupBox" name="groupBox_9">
+          <property name="title">
+           <string>Local imports</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_13">
+           <item row="3" column="0">
+            <widget class="QPushButton" name="visIRSpectralParametersImport_button">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;VISIr spectral parameters, ...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string>Import VisIR Spectral Parameters</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QPushButton" name="plannedTargetsImport_button">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;PlannedTargets, ...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string>Import PlannedTargets</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QPushButton" name="SCAMLDImport_button">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Import SCAM_LD</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="pushButton">
+             <property name="text">
+              <string>Load local PDS archive</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>Selection</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_12">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBox_7">
+          <property name="title">
+           <string>Points list</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_11">
+           <item row="0" column="0">
+            <widget class="QListWidget" name="listWidget"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QGroupBox" name="groupBox_8">
+          <property name="title">
+           <string>Selection options</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Points</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QLabel" name="_name">
+              <property name="text">
+               <string>Name :</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="name">
+              <property name="text">
+               <string>&lt;name&gt;</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QLabel" name="_time">
+              <property name="text">
+               <string>Time :</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="time">
+              <property name="text">
+               <string>&lt;Time&gt;</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_8">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QLabel" name="_lat">
+              <property name="text">
+               <string>Lat :</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lat">
+              <property name="text">
+               <string>18,43071</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QLabel" name="_lon">
+              <property name="text">
+               <string>Lon :</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lon">
+              <property name="text">
+               <string> 77,45372</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <widget class="QLabel" name="_el">
+              <property name="text">
+               <string>El :</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="el">
+              <property name="text">
+               <string>-48,52 °</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <widget class="QLabel" name="_az">
+              <property name="text">
+               <string>Az :</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="az">
+              <property name="text">
+               <string>123,236 °</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0">
+         <widget class="QGroupBox" name="groupBox_6">
+          <property name="title">
+           <string>RMI</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="0">
+            <widget class="ImageView" name="RMI_imageView"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="VisIR_tab">
+       <attribute name="title">
+        <string>VisIR</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_10">
+        <item row="0" column="0">
+         <widget class="QSplitter" name="splitter">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <widget class="QGroupBox" name="groupBox_4">
+           <property name="title">
+            <string>Spectra</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_2">
+            <item row="0" column="0">
+             <widget class="PlotWidget" name="current_IRSPlot"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QGroupBox" name="groupBox_5">
+           <property name="title">
+            <string>Spectral parameters</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_3">
+            <item row="0" column="0">
+             <widget class="QSplitter" name="splitter_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <widget class="QWidget" name="layoutWidget">
+               <layout class="QVBoxLayout" name="verticalLayout">
+                <item>
+                 <widget class="QTableWidget" name="spectralParameters_table">
+                  <row>
+                   <property name="text">
+                    <string>BD1420</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>BD1900_2</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>BD1920</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>BD1930</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>BD1940</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>BD2210</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>BD2280</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>BD2320</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>LCPINDEX2</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>HCPINDEX2</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>BD2530</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>SINDEX2</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>S2100_2500</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>S1350_1800</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>BD433</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>BD545</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>BD650</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>R6744</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>R7584</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>S6744</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>S7584</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>S6075</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>R6084</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>S6084</string>
+                   </property>
+                  </row>
+                  <column>
+                   <property name="text">
+                    <string>Mean</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Median</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>StDev</string>
+                   </property>
+                  </column>
+                  <item row="0" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="0" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="0" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="1" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="1" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="1" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="2" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="2" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="2" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="3" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="3" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="3" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="4" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="4" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="4" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="5" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="5" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="5" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="6" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="6" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="6" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="7" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="7" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="7" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="8" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="8" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="8" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="9" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="9" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="9" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="10" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="10" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="10" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="11" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="11" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="11" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="12" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="12" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="12" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="13" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="13" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="13" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="14" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="14" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="14" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="15" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="15" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="15" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="16" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="16" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="16" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="17" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="17" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="17" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="18" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="18" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="18" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="19" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="19" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="19" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="20" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="20" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="20" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="21" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="21" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="21" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="22" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="22" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="22" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="23" column="0">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="23" column="1">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                  <item row="23" column="2">
+                   <property name="text">
+                    <string>#</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="plotSpectralParameters_button">
+                  <property name="text">
+                   <string>Plot</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="PlotWidget" name="spectralParameters_plot"/>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ImageView</class>
+   <extends>QGraphicsView</extends>
+   <header>pyqtgraph.h</header>
+  </customwidget>
+  <customwidget>
+   <class>PlotWidget</class>
+   <extends>QGraphicsView</extends>
+   <header>pyqtgraph.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

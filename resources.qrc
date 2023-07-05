@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/supercam_companion" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
