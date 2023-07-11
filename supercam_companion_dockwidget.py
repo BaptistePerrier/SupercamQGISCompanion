@@ -24,8 +24,6 @@
 
 import os
 import numpy as np
-from astropy.io import fits
-from scipy import signal
 
 from qgis.PyQt import QtGui, QtWidgets, uic
 from qgis.PyQt.QtCore import pyqtSignal
@@ -33,8 +31,7 @@ from qgis.core import QgsFeature, QgsPoint
 
 import pyqtgraph as pg
 
-# Odd syntax to trick pyhton into importing local module 'utils'
-from .aux import misc
+from . import scam_helper as helper
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'supercam_companion_dockwidget_base.ui'))
@@ -44,7 +41,7 @@ class SupercamCompanionDockWidget(QtWidgets.QDockWidget, FORM_CLASS):
     closingPlugin = pyqtSignal()
     log = pyqtSignal(str)
 
-    def __init__(self, fileProvider, parent=None):
+    def __init__(self, parent=None):
         """Constructor."""
         super(SupercamCompanionDockWidget, self).__init__(parent)
         # Set up the user interface from Designer.
@@ -52,7 +49,6 @@ class SupercamCompanionDockWidget(QtWidgets.QDockWidget, FORM_CLASS):
         # self.<objectname>, and you can use autoconnect slots - see
         # http://doc.qt.io/qt-5/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
-        self.fileProvider = fileProvider
     
     def init(self):
         self.setupUi(self)
@@ -65,31 +61,11 @@ class SupercamCompanionDockWidget(QtWidgets.QDockWidget, FORM_CLASS):
 
         self.spectralParameters_plot.clear()
         self.spectralParameters_plot.setTitle(None)
-
-    def getSpectralData(self, sclk, cdr_fnames):
-        reflectances = []
-
-        for file in cdr_fnames:
-
-            fitsFilePath = self.fileProvider.fetchPDSDataFile(sclk, file)
-
-            #fitsFilePath = self.fileProvider.fetchPDSFile(misc.constants.PDSWEBSITEBASE + misc.constants.PDSSHOTSDATAFOLDER + "/sol_{:05d}/".format(sol) + file.lower())
-            #fitsFile = self.fileProvider.open(os.path.join(self.fileProvider.pds_local_data_folder, "sol_{:05d}".format(sol), file.lower()), 'rb')
-
-            Headerfitslist = fits.open(fitsFilePath)
-            reflectances.append(Headerfitslist['SPECTRA'].data['I_F_atm'])
-            wavelengths = (Headerfitslist['WAVELENGTH'].data['Wavelength (um)'])
-            Headerfitslist.close()
-        
-        return (wavelengths, reflectances)
-    
-    def getSmoothedSpectrum(self, reflectance):
-        return(signal.savgol_filter(reflectance, window_length=11, polyorder=3, mode="nearest"))
     
     def ftSelected(self, ft):
         self.currentSelectedFt = ft
         self.name.setText(str(ft.attribute("name")))
-        self.time.setText("Sol {}, {} martian time".format(misc.functions.getSolFromsclk(ft.attribute("sclk")), misc.functions.getMartianTimeFromsclk(ft.attribute("sclk"))))
+        self.time.setText("Sol {}, {} martian time".format(helper.misc.functions.getSolFromsclk(ft.attribute("sclk")), helper.misc.functions.getMartianTimeFromsclk(ft.attribute("sclk"))))
         self.lat.setText(str(QgsPoint(ft.geometry().asPoint()).x()))
         self.lon.setText(str(QgsPoint(ft.geometry().asPoint()).y()))
         self.az.setText("///")
@@ -121,9 +97,8 @@ class SupercamCompanionDockWidget(QtWidgets.QDockWidget, FORM_CLASS):
                 except:
                     std = "#"
                 self.spectralParameters_table.item(rowIndex, 2).setText(str(std))
-
         
-            wavelengths, reflectances = self.getSpectralData(ft.attribute("sclk"), ft.attribute("shots")["IRS"]["cdr_fname"])
+            wavelengths, reflectances = helper.science.spectra.getSpectralData(ft.attribute("sclk"), ft.attribute("shots")["IRS"]["cdr_fname"])
             self.current_IRSPlot.setTitle(ft.attribute("name"))
             for reflectance in reflectances:
                 self.current_IRSPlot.plot(wavelengths, reflectance, pen=pg.mkPen(color=(200, 200, 200), width=0.5))
@@ -133,8 +108,12 @@ class SupercamCompanionDockWidget(QtWidgets.QDockWidget, FORM_CLASS):
 
             self.current_IRSPlot.plot(wavelengths, reflectancesMean, pen=pg.mkPen(color=(0, 0, 125), width=0.5))
 
-            self.current_IRSPlot.plot(wavelengths, self.getSmoothedSpectrum(reflectancesMean), pen=pg.mkPen(color=(255, 0, 0), width=2))
-        
+            self.current_IRSPlot.plot(wavelengths, helper.science.spectra.getSmoothedSpectrum(reflectancesMean), pen=pg.mkPen(color=(255, 0, 0), width=2))
+    
+    def updateLocalLastMeasureDisplay(self):
+        config = helper.files.local.readLocalConfig()
+        self.localLastMeasure_Label.setText("Sol {}, {} Mars. time".format(helper.misc.functions.getSolFromsclk(config["PDSSyncing"]["local_last_sclk"]), helper.misc.functions.getMartianTimeFromsclk(config["PDSSyncing"]["local_last_sclk"])))
+
     def plotSpectralParameters(self):
         selectedCells = self.spectralParameters_table.selectedIndexes()
         selectedRows = []

@@ -16,11 +16,11 @@ class selectTool(QgsMapToolIdentifyFeature):
     def __init__(self, iface):
         self.iface = iface
         self.canvas = self.iface.mapCanvas()
-        self.pointsLayer = QgsProject().instance().mapLayersByName("usableTargets")[0]
-        QgsMapToolIdentifyFeature.__init__(self, self.canvas, self.pointsLayer)
+        #self.pointsLayer = QgsProject().instance().mapLayersByName("usableTargets")[0]
+        #QgsMapToolIdentifyFeature.__init__(self, self.canvas, self.pointsLayer)
         #self.iface.currentLayerChanged.connect(self.active_changed)
-        
-        self.iface.setActiveLayer(self.pointsLayer)
+
+        QgsMapToolIdentifyFeature.__init__(self, self.canvas)
         
         self._ctrlPressed = False
         self.pltCount = 0
@@ -49,6 +49,14 @@ class selectTool(QgsMapToolIdentifyFeature):
 
     def init(self):
         self.log.emit("Map tool initialized.")
+
+    def updatePointsLayer(self, pointsLayer):
+        self.pointsLayer = pointsLayer
+
+        # Herited method
+        self.setLayer(pointsLayer)
+
+        self.iface.setActiveLayer(self.pointsLayer)
 
     def active_changed(self, layer):
         self.pointsLayer.removeSelection()
